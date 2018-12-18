@@ -1,15 +1,17 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @comment = Comment.new(article_id: @article.id)
+    @comments = @article.comments.all
   end
 
   # GET /articles/new
@@ -69,6 +71,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:name, :author, :content)
+      params.require(:article).permit(:title, :author, :body)
     end
 end

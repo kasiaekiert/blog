@@ -29,6 +29,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'faker', '~> 1.6', '>= 1.6.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -40,6 +42,13 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'guard', '~> 2.14', '>= 2.14.1'
+
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+
+
+  gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
