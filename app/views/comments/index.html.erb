@@ -1,27 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @article.title %>
-</p>
+<h1>Listing Comments</h1>
 
-<p>
-  <strong>Author:</strong>
-  <%= @article.author %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @article.body %>
-</p>
-
-<%= render 'comments/form' %>
-
-
-<p.line> 
-<p> 
-<strong>Last comments:</strong> 
-</p>
 <table>
   <thead>
     <tr>
@@ -32,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @article.comments.each do |comment| %>
+    <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.author %></td>
         <td><%= comment.body %></td>
@@ -44,5 +24,6 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>

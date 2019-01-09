@@ -1,15 +1,35 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+  # def self.search(:search)
+#   if search 
+#     article = Article.find_by(name: search)
+#     if article
+#       self.where(article_id: article)
+#     else
+#       Article.all
+#     end
+#   else 
+#     Article.all
+#   end
+# end
+
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    if params[:search]
+      @article = Article.where('search LIKE ?', "%#{params[:search]}%")
+    else
+      @article = Article.all
+    end
+    # @articles = Article.all
+    # @articles = Article.search(params[:search])
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @comment = Comment.new(article_id: @article.id)
   end
 
   # GET /articles/new
@@ -69,6 +89,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :author, :body)
+      params.require(:article).permit(:title, :author, :body, :search)
     end
 end

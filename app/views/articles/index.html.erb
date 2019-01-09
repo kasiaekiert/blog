@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+# <h3>Search for article:</h3>
+# <%= form_tag(article_path), method: :get do %>
+#   <%= text_field_tag(:search, params[:search]) %> 
+#   <%= submit_tag ("Search") %> 
+# <% end %> 
+
+<%= form_tag(articles_path method: :get) do %>
+  Article <%= text_field_tag :search, params[:article] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
 <h1>Listing Articles</h1>
 
 <table>

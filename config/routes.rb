@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :comments
+  resources :comments
   resources :articles
 
   get '/blog' => 'articles#index'
