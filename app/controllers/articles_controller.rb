@@ -1,21 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
-  # def self.search(:search)
-#   if search 
-#     article = Article.find_by(name: search)
-#     if article
-#       self.where(article_id: article)
-#     else
-#       Article.all
-#     end
-#   else 
-#     Article.all
-#   end
-# end
-
-  # GET /articles
-  # GET /articles.json
   def index
     if params[:search]
       @articles = Article.where('title LIKE :search OR body LIKE :search', search: "%#{params[:search]}%")
@@ -25,9 +10,6 @@ class ArticlesController < ApplicationController
   end
 
 
-
-  # GET /articles/1
-  # GET /articles/1.json
   def show
     @comment = Comment.new(article_id: @article.id)
   end
